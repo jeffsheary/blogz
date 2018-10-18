@@ -4,7 +4,7 @@ from sqlalchemy import desc
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABSE_URI'] = 'mysql+pymysql://buld-a-blog:jeff@localhost:8889/build-a-blog'
+app.config['SQLALCHEMY_DATABSE_URI'] = 'mysql+pymysql://buld-a-blog:password@localhost:8889/build-a-blog'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
@@ -30,7 +30,7 @@ def post_id():
         return render_template('blog.html',blogs=blogs)
     else:
         single_post = Blog.query.filter_by(id=id).first()
-        print("individual=",single_post.title,single_post.body)
+        print(single_post.title,single_post.body)
     return render_template('single_post.html',single_post=single_post)
 
 @app.route('/newpost', methods=['POST','GET'])
